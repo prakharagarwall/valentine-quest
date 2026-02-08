@@ -39,7 +39,7 @@ export default function ValentineQuest() {
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-rose-100 via-pink-200 to-rose-300 flex items-center justify-center p-6 overflow-hidden">
       <VideoBackground />
-      {(stage === 'lock' || stage === 'quiz' || stage === 'prep' || stage === 'game') && (
+      {stage === 'lock' && (
         <>
           <FloatingHearts hearts={hearts} />
           <FlyingLoveLanguages />

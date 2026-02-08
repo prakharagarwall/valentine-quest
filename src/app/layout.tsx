@@ -1,8 +1,6 @@
 import './globals.css'
 import React from 'react'
-import dynamic from 'next/dynamic'
-
-const ToastContainer = dynamic(() => import('../components/ui/ToastContainer'), { ssr: false })
+import ToastContainer from '../components/ui/ToastContainer'
 
 export const metadata = {
   title: 'Valentine Quest',

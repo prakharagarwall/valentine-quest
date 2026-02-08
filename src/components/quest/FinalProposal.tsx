@@ -93,7 +93,37 @@ export default function FinalProposal({ score }: { score: number }) {
 
   if (success)
     return (
-      <div className="bg-white/90 p-10 rounded-3xl text-center shadow-2xl border-8 border-rose-300 max-w-lg relative overflow-hidden">
+      <>
+        {/* Background floating hearts */}
+        <div className="pointer-events-none absolute inset-0 w-full h-full">
+          {Array.from({ length: 12 }, (_, i) => {
+            const x = Math.random() * 100;
+            const delay = Math.random() * 2;
+            const duration = 8 + Math.random() * 4;
+            return (
+              <motion.div
+                key={i}
+                initial={{ y: '110vh', x: `${x}vw`, opacity: 0 }}
+                animate={{ y: '-10vh', opacity: [0, 0.6, 0] }}
+                transition={{
+                  duration,
+                  repeat: Infinity,
+                  ease: 'linear',
+                  delay,
+                }}
+                style={{
+                  position: 'absolute',
+                  fontSize: '2.25rem',
+                  color: 'rgba(251, 113, 133, 0.6)',
+                }}
+              >
+                ❤️
+              </motion.div>
+            );
+          })}
+        </div>
+        {/* Prize receipt card */}
+        <div className="bg-white/90 p-10 rounded-3xl text-center shadow-2xl border-8 border-rose-300 max-w-lg relative overflow-hidden z-10">
         <div>
           <h1 className="text-6xl text-rose-600 font-serif mb-4 font-black">MAHAL KITA!</h1>
           <div className="bg-rose-50 p-6 rounded-2xl text-left border-2 border-rose-200 space-y-4 shadow-inner">
@@ -109,60 +139,18 @@ export default function FinalProposal({ score }: { score: number }) {
             </div>
             {score >= 20 && (
               <div className="flex gap-3 text-orange-600">
-                <Star /> <p className="font-bold">Marathon Voucher!</p>
+                <Star /> <p className="font-bold">Marathon Voucher! Redeemable Later!! ❤️</p>
               </div>
             )}
           </div>
           <p className="mt-8 text-xs text-gray-400">Final Score: {score} | Screenshot for proof! ❤️</p>
         </div>
-        {/* Flying "I love you" in 100 languages with hearts */}
-        <div className="pointer-events-none absolute inset-0 w-full h-full z-10">
-          {I_LOVE_YOU_100.slice(0, 100).map((txt, i) => (
-            <motion.div
-              key={i}
-              initial={{
-                x: Math.random() * 600 - 300,
-                y: 400 + Math.random() * 100,
-                opacity: 0,
-                scale: 0.7 + Math.random() * 0.6,
-                rotate: Math.random() * 40 - 20
-              }}
-              animate={{
-                y: -100 - Math.random() * 200,
-                opacity: [0, 1, 1, 0],
-                x: `+=${Math.random() * 120 - 60}`,
-                rotate: Math.random() * 40 - 20
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                delay: i * 0.08,
-                repeat: Infinity,
-                repeatDelay: 6 + Math.random() * 2,
-                ease: 'easeInOut'
-              }}
-              style={{
-                position: 'absolute',
-                left: '50%',
-                zIndex: 20,
-                color: 'rgba(236, 72, 153, 1)',
-                fontWeight: 700,
-                fontSize: '1.125rem',
-                userSelect: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.25rem',
-                filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
-              }}
-            >
-              <span role="img" aria-label="heart">❤️</span> {txt}
-            </motion.div>
-          ))}
         </div>
-      </div>
+      </>
     );
 
   return (
-    <div className="text-center w-full max-w-2xl relative overflow-hidden">
+    <div className="text-center w-full max-w-2xl relative overflow-visible">
       {snarky && (
         <div className="absolute -top-32 left-0 right-0 text-red-600 font-bold text-2xl drop-shadow-md">{snarky}</div>
       )}
