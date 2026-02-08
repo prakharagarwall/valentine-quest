@@ -18,15 +18,20 @@ import VideoBackground from "@/components/ui/VideoBackground";
 export default function ValentineQuest() {
   const [stage, setStage] = useState("lock");
   const [score, setScore] = useState(0);
-  // Shared heart positions for both animations
-  const [hearts, setHearts] = useState(() => Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    delay: Math.random() * 2,
-    duration: 8 + Math.random() * 4,
-  })));
+  // Shared heart positions for both animations - start empty to avoid hydration mismatch
+  const [hearts, setHearts] = useState<Array<{id: number, x: number, delay: number, duration: number}>>([]);
 
   useEffect(() => {
+    // Generate random hearts only on client to avoid hydration mismatch
+    if (hearts.length === 0) {
+      setHearts(Array.from({ length: 12 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        delay: Math.random() * 2,
+        duration: 8 + Math.random() * 4,
+      })));
+    }
+    
     // Play background music on app mount
     if (typeof window !== 'undefined') {
       sounds.bgMusic.play();
@@ -34,7 +39,7 @@ export default function ValentineQuest() {
     return () => {
       sounds.bgMusic.stop();
     };
-  }, []);
+  }, [hearts.length]);
 
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-rose-100 via-pink-200 to-rose-300 flex items-center justify-center p-6 overflow-hidden">
