@@ -12,11 +12,11 @@
 
 | Technology | Version | Purpose |
 |-----------|---------|---------|
-| **Next.js** | 14.2.0 | React framework with SSR/SSG support |
-| **React** | 18.2.0 | UI library |
-| **TypeScript** | 5.1.6 | Type safety |
-| **Tailwind CSS** | 3.4.7 | Styling & responsive design |
-| **Framer Motion** | 10.12.16 | Smooth animations (flying hearts, bouncing elements) |
+| **Next.js** | 15.1.0 | React framework with SSR/SSG support |
+| **React** | 18.3.1 | UI library |
+| **TypeScript** | 5.7.0 | Type safety |
+| **Tailwind CSS** | 3.4.19 | Styling & responsive design |
+| **Framer Motion** | 12.33.0 | Smooth animations (flying hearts, bouncing elements) |
 | **canvas-confetti** | 1.9.4 | Celebration confetti on victory |
 | **Howler.js** | 2.2.4 | Audio effects (click, hit, catch, victory, bg music) |
 | **Lucide React** | 0.563.0 | Icon library |
